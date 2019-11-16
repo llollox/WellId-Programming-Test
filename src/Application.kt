@@ -1,6 +1,7 @@
 package com.example
 
 import com.example.dto.ErrorDTO
+import com.example.dto.PointDTO
 import com.example.entities.Point
 import io.ktor.application.*
 import io.ktor.response.*
@@ -34,18 +35,21 @@ fun Application.module() {
             } ?: call.respond(HttpStatusCode.BadRequest, ErrorDTO("Unparsable num of lines"))
         }
 
+        post("/point") {
+            val pointDTO = call.receiveOrNull<PointDTO>()
+            if (pointDTO?.x != null && pointDTO.y != null) {
+                val point = Point(pointDTO.x, pointDTO.y)
+                points.add(point)
+                call.respond(point)
+            }
+            else {
+                call.respond(HttpStatusCode.BadRequest, ErrorDTO("Unparsable point"))
+            }
+        }
+
         delete("/space") {
             points.clear()
             call.respond(points.toArray())
-        }
-
-        post("/point") {
-            call.receiveOrNull<Point>()?.let { point ->
-                points.add(point)
-                call.respond(point)
-
-            } ?: call.respond(HttpStatusCode.BadRequest, ErrorDTO("Unparsable point"))
-
         }
     }
 }

@@ -2,7 +2,6 @@ package com.example
 
 import com.example.entities.Line
 import com.example.entities.Point
-import java.util.ArrayList
 import java.util.HashSet
 
 

@@ -4,7 +4,7 @@ import java.util.HashSet
 
 
 class Line(private val point1: Point, p2: Point) {
-    private val gradient: Double
+    private val gradient: Double?
     private val shift: Double
     val points: HashSet<Point> = HashSet()
 
@@ -14,7 +14,7 @@ class Line(private val point1: Point, p2: Point) {
         this.points.add(this.point1)
         this.points.add(p2)
         this.gradient = this.getGradient(this.point1, p2)
-        this.shift = this.getShift(this.point1, p2)
+        this.shift = this.getShift(this.point1, this.gradient)
     }
 
 
@@ -29,19 +29,13 @@ class Line(private val point1: Point, p2: Point) {
 
 
     // Private class functions ************************************************************************
-    private fun getGradient(p1: Point, p2: Point): Double {
-        return if (p1.x - p2.x == 0.0) {
-            0.0
-        } else ((p1.y - p2.y) / (p1.x - p2.x))
-
+    private fun getGradient(p1: Point, p2: Point): Double? {
+        val gradient = if (p1.x == p2.x) { null } else ((p1.y - p2.y) / (p1.x - p2.x))
+        return if (gradient == -0.0) 0.0 else gradient // Fix to avoid -0.0 number
     }
 
-    private fun getShift(p1: Point, p2: Point): Double {
-        return if (p2.x - p1.x == 0.0) {
-            0.0
-        } else ((p2.x * p1.y - p1.x * p2.y) / (p2.x - p1.x))
-
-    }
+    private fun getShift(point: Point, gradient: Double?): Double
+        = if (gradient == null) { point.x } else { point.y - gradient * point.x }
 
 
     // Equals and Hash Code ***************************************************************************
