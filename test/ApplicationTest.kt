@@ -7,6 +7,10 @@ import io.ktor.http.*
 import kotlin.test.*
 import io.ktor.server.testing.*
 
+/**
+ * This class is for testing the web application
+ * when something strange is given as input.
+ */
 class ApplicationTest {
 
     private val gson = Gson()

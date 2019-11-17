@@ -5,8 +5,11 @@ import com.example.entities.Point
 import org.junit.Test
 import kotlin.test.assertEquals
 
+/**
+ * This class is for the equals and hashcode methods
+ * of the Line class.
+ */
 class LineTest {
-
 
     @Test
     fun withBothNullGradientAndSameShift__shouldBeSame() {

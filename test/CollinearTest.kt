@@ -4,6 +4,11 @@ import com.example.entities.Point
 import org.junit.Assert
 import org.junit.Test
 
+/**
+ * This class is for testing the collinear function
+ * which count how many collinear lines with at least a
+ * certain number of points are present into the space.
+ */
 class CollinearTest {
 
     private val collinear = Collinear()
