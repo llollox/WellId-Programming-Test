@@ -34,9 +34,10 @@ class Line(private val point1: Point, p2: Point) {
         return if (gradient == -0.0) 0.0 else gradient // Fix to avoid -0.0 number
     }
 
-    private fun getShift(point: Point, gradient: Double?): Double
-        = if (gradient == null) { point.x } else { point.y - gradient * point.x }
-
+    private fun getShift(point: Point, gradient: Double?): Double {
+        val shift = if (gradient == null) { point.x } else { point.y - gradient * point.x }
+        return if (shift == -0.0) 0.0 else shift // Fix to avoid -0.0 number
+    }
 
     // Equals and Hash Code ***************************************************************************
     override fun equals(other: Any?): Boolean {

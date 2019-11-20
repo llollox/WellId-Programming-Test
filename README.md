@@ -14,3 +14,6 @@ The following api are available:
 * ```POST /point``` to create a new point in the space. The body must be a json like the following ```{"x": 1, "y":2}```.
 * ```DELETE /space``` to delete all points the space.  
 
+In the root directory of this project there is a file ```Collinear.postman_collection.json```.
+In this file there is the API definition for Postman.
+You can import it in your Postman client to start immediately to test the project.
